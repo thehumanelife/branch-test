@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh "echo $cc"
+                sh "echo $DOCKER_REPO"
             }
         }
     }
