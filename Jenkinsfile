@@ -8,7 +8,7 @@ pipeline {
     agent { label 'master' }
     environment{
         cc = sayHai('val',$BRANCH_NAME)
-        DOCKER_REPO_URL = sayHai('DOCKER_REPO_URL',$BRANCH_NAME),
+        DOCKER_REPO_URL = sayHai('DOCKER_REPO_URL',$BRANCH_NAME)
         DOCKER_REPO=sayHai('DOCKER_REPO',$BRANCH_NAME)
     }
     stages {
