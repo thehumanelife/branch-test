@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const myargs = process.argv.slice(2);
+const myargs = process.argv;
 
 let rawdata = fs.readFileSync('./env/env_props.json');
 let props = JSON.parse(rawdata);
