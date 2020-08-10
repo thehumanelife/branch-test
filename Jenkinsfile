@@ -7,7 +7,7 @@ def sayHai(String property,String branch) {
 pipeline {
     agent { label 'master' }
     environment{
-        cc = sayHai 'val' $BRANCH_NAME
+        cc = sayHai('val',$BRANCH_NAME)
     }
     stages {
         stage('build') {
