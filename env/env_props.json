@@ -1,6 +1,8 @@
 {
   "master": {
-    "val": 1
+    "DOCKER_REPO_URL": "okay.dkr.ecr.ap-south-1.amazonaws.com",
+    "DOCKER_REPO": "${DOCKER_REPO_URL}/onething",
+    "DOCKER_IMAGE_TAG": "${DOCKER_REPO}:${BUILD_NUMBER}"
   },
   "dev": {
     "val": 2
