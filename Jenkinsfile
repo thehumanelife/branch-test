@@ -31,6 +31,7 @@ pipeline {
         sh 'sh build_docker.sh'
       }
     }
+    
     stage('docker run') {
       when {
         anyOf {
