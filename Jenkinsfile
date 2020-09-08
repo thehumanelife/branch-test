@@ -42,7 +42,7 @@ pipeline {
         label env.DEPLOY_LOC
       }
       steps {
-        sh 'deploy_docker.sh'
+        sh 'sh deploy_docker.sh'
       }
     }
   }
