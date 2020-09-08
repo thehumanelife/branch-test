@@ -1,8 +1,9 @@
 {
   "master": {
-    "DOCKER_REPO_URL": "okay.dkr.ecr.ap-south-1.amazonaws.com",
-    "DOCKER_REPO": "${DOCKER_REPO_URL}/onething",
-    "DOCKER_IMAGE_TAG": "${DOCKER_REPO}:${BUILD_NUMBER}"
+    "DOCKER_REPO_URL": "077286633283.dkr.ecr.ap-south-1.amazonaws.com",
+    "DOCKER_REPO": "077286633283.dkr.ecr.ap-south-1.amazonaws.com/onething",
+    "DOCKER_IMAGE_TAG": "${DOCKER_REPO}:${BUILD_NUMBER}",
+    "DEPLOY_LOC": "master"
   },
   "dev": {
     "val": 2

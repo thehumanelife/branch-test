@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  doc-generation:
+    image: ${DOCKER_IMAGE_TAG}
+    container_name: "branch-test"  
+    network_mode: "host"
