@@ -1,13 +1,13 @@
 {
   "release": {
     "DOCKER_REPO_URL": "077286633283.dkr.ecr.ap-south-1.amazonaws.com",
-    "DOCKER_REPO": "077286633283.dkr.ecr.ap-south-1.amazonaws.com/onething",
+    "DOCKER_REPO": "077286633283.dkr.ecr.ap-south-1.amazonaws.com/onething:release",
     "DOCKER_IMAGE_TAG": "${DOCKER_REPO}:${BUILD_NUMBER}",
     "LABEL": "master"
   },
   "dev": {
     "DOCKER_REPO_URL": "077286633283.dkr.ecr.ap-south-1.amazonaws.com",
-    "DOCKER_REPO": "077286633283.dkr.ecr.ap-south-1.amazonaws.com/onething",
+    "DOCKER_REPO": "077286633283.dkr.ecr.ap-south-1.amazonaws.com/onething:dev",
     "DOCKER_IMAGE_TAG": "${DOCKER_REPO}:${BUILD_NUMBER}",
     "LABEL": "dev"
   }
