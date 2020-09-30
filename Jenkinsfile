@@ -29,7 +29,7 @@ pipeline {
         }
       }
       steps {
-        sh 'sh ./deployment/build_docker.sh'
+        sh 'sh build_docker.sh'
       }
     }
     stage('docker run') {
@@ -43,7 +43,7 @@ pipeline {
         label env.DEPLOY_LOC
       }
       steps {
-        sh 'sh ./deployment/deploy_docker.sh'
+        sh 'sh deploy_docker.sh'
       }
     }
   }
