@@ -3,13 +3,13 @@ pipeline {
     label 'master'
   }
   environment {
-    cc = sh(returnStdout: true, script: "node get_props.js val $BRANCH_NAME").trim()
+    SLACK_CHANNEL = 'build-status'
     DOCKER_REPO_URL = sh(returnStdout: true, script: "node get_props.js DOCKER_REPO_URL $BRANCH_NAME").trim()
     DOCKER_REPO = sh(returnStdout: true, script: "node get_props.js DOCKER_REPO $BRANCH_NAME").trim()
-    DEPLOY_LOC = sh(returnStdout: true, script: "node get_props.js DEPLOY_LOC $BRANCH_NAME").trim()
+    DEPLOY_LOC = sh(returnStdout: true, script: "node get_props.js LABEL $BRANCH_NAME").trim()
     DOCKER_IMAGE_TAG = "${DOCKER_REPO}:${BUILD_NUMBER}"
   }
-    stages {
+  stages {
     stage('npm install') {
       steps {
         sh 'npm i'
@@ -17,33 +17,49 @@ pipeline {
     }
     stage('Unit Test') {
       steps {
-        sh 'npm test'
+        // sh 'npm test'
+          sh 'echo hai'
       }
     }
     stage('docker build') {
       when {
         anyOf {
-          branch 'master';
-          branch 'test';
+          branch 'release';
+          branch 'dev';
         }
       }
       steps {
-        sh 'sh build_docker.sh'
+        sh 'sh ./deployment/build_docker.sh'
       }
     }
-    
     stage('docker run') {
-      when {
+       when {
         anyOf {
-          branch 'master';
-          branch 'test';
+          branch 'release';
+          branch 'dev';
         }
       }
-      agent {
+     agent {
         label env.DEPLOY_LOC
       }
       steps {
-        sh 'sh deploy_docker.sh'
+        sh 'sh ./deployment/deploy_docker.sh'
+      }
+    }
+  }
+  post {
+    success {
+      script {
+        if (['release','dev'].contains(env.BRANCH_NAME) ) {
+          slackSend(channel: "${SLACK_CHANNEL}", message: "Job ${JOB_NAME} ( build: ${BUILD_NUMBER}) is successfully deployed", color: 'good')
+        }
+      }
+    }
+    failure {
+      script {
+        if (['release','dev'].contains(env.BRANCH_NAME)) {
+          slackSend(channel: "${SLACK_CHANNEL}", message: "Job ${JOB_NAME} is failed", color: '#FF0000')
+        }
       }
     }
   }
